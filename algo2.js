@@ -26,6 +26,7 @@ const numToBit = (N) => {
 }
 
 const longuest0Suite = (N) => {
+  console.log('Number: ', N);
   const binary = numToBit(N);
   let finalCount = 0;
   let tempCount = 0; 
@@ -35,6 +36,7 @@ const longuest0Suite = (N) => {
   }
   console.log('Binary: ', binary.toString().replace(/,/g, ''));
   console.log('L:', finalCount);
+  console.log('');
 }
 
 longuest0Suite(N1);
