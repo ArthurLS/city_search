@@ -43,8 +43,10 @@ const App = () => {
   return (
     <div className="App">
       <div className="title">City search</div>
-      <div>
-        Je recherche
+      <div className="search-container">
+        <div className="container-title">
+          Je recherche...
+        </div>
         <input
           value={searchInput}
           onChange={(e) => setSearchInput(e.currentTarget.value)}
@@ -53,22 +55,43 @@ const App = () => {
       </div>
       <div className="cities-container">
         <div className="half-container">
-          {
-            cities.metropole.map((city) => (
-              <div key={`${city.nomCommune}_${city.codePostal}`}>
-                {city.nomCommune} - {city.codePostal}
-              </div>
-            ))
-          }
+          <div className="container-title">Villes de métropole</div>
+          <div className="infoBlock" style={{ backgroundColor: cities.metropole.length ? '#72CB79' : '#C47779' }}>
+            {
+                cities.metropole.length
+                  ? `${cities.metropole.length} villes correspondant au teste saisi`
+                  : 'Aucune ville ne correspond au texte saisi'
+            }
+          </div>
+          <div className="cities-grid">
+            {
+              cities.metropole.map((city) => (
+                <div className="grid-item" key={`${city.nomCommune}_${city.codePostal}`}>
+                  {city.nomCommune} - {city.codePostal}
+                </div>
+              ))
+            }
+          </div>
+
         </div>
         <div className="half-container">
-          {
-            cities.outreMer.map((city) => (
-              <div key={`${city.nomCommune}_${city.codePostal}`}>
-                {city.nomCommune} - {city.codePostal}
-              </div>
-            ))
-          }
+          <div className="container-title">Villes d&apos;outre mer</div>
+          <div className="infoBlock" style={{ backgroundColor: cities.outreMer.length ? '#72CB79' : '#C47779' }}>
+            {
+              cities.outreMer.length
+                ? `${cities.outreMer.length} villes correspondant au teste saisi`
+                : 'Aucune ville ne correspond au texte saisi'
+            }
+          </div>
+          <div className="cities-grid">
+            {
+              cities.outreMer.map((city) => (
+                <div className="grid-item" key={`${city.nomCommune}_${city.codePostal}`}>
+                  {city.nomCommune} - {city.codePostal}
+                </div>
+              ))
+            }
+          </div>
         </div>
       </div>
     </div>
