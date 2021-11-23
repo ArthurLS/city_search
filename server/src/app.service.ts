@@ -1,12 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-const cities = require('../codes-postaux.json');
+const cities: { codePostal: string, codeCommune: string, nomCommune: string }[] = require('../codes-postaux.json');
 
 @Injectable()
 export class AppService {
-  getHello(): string {
-    console.log('Hello');
-    console.log(cities[0]);
-    return 'Hello World!';
+  getCities(): { codePostal: string, codeCommune: string, nomCommune: string }[] {
+
+    const resCities = cities.filter((city, index) => index < 10)
+
+    return resCities;
   }
 }

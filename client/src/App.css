@@ -1,11 +1,22 @@
 .App {
   text-align: center;
   font-weight: bold;
-
 }
 .title {
   font-size: 35px;
   padding: 20px;
   font-weight: bold;
-  color: white;
+}
+
+.cities-container {
+  display: flex;
+  padding: 10px;
+  height: 80%;
+  justify-content: space-around;
+}
+.half-container {
+  width: 48%;
+  height: 100%;
+  border-radius: 20px;
+  background-color: #D2E5E9;
 }
