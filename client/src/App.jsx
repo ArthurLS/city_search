@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import ChildComponent from './ChildComponent';
-
 import './App.css';
 
 const App = () => {
@@ -9,7 +7,10 @@ const App = () => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:9000/test')
+    const url = new URL('http://localhost:9000/cities');
+    url.search = new URLSearchParams({ name: 'Rennes' }).toString();
+
+    fetch(url)
       .then((res) => res.json())
       .then((res) => {
         console.log('Res: ', res);
