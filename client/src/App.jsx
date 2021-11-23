@@ -7,8 +7,13 @@ const App = () => {
   const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
+    fetchCities();
+  }, [searchInput]);
+
+  const fetchCities = () => {
     const url = new URL('http://localhost:9000/cities');
-    url.search = new URLSearchParams({ name: 'Rennes' }).toString();
+    const param = Number.isNaN(Number(searchInput)) ? { name: searchInput } : { code: searchInput };
+    url.search = new URLSearchParams(param).toString();
 
     fetch(url)
       .then((res) => res.json())
@@ -16,7 +21,7 @@ const App = () => {
         console.log('Res: ', res);
         setCities(splitCities(res));
       });
-  }, []);
+  };
 
   const splitCities = (c) => {
     const metropole = [];
@@ -51,7 +56,7 @@ const App = () => {
           {
             cities.metropole.map((city) => (
               <div key={`${city.nomCommune}_${city.codePostal}`}>
-                {city.nomCommune}
+                {city.nomCommune} - {city.codePostal}
               </div>
             ))
           }
@@ -60,7 +65,7 @@ const App = () => {
           {
             cities.outreMer.map((city) => (
               <div key={`${city.nomCommune}_${city.codePostal}`}>
-                {city.nomCommune}
+                {city.nomCommune} - {city.codePostal}
               </div>
             ))
           }
