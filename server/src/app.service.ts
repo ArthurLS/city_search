@@ -10,11 +10,11 @@ export class AppService {
       .filter((city) => {
         if (code) {
           if (name) {
-            return city.codePostal.includes(code.toString()) && city.nomCommune.includes(name);
+            return city.codePostal.includes(code) && city.nomCommune.normalize().includes(name.normalize());
           }
-          return city.codePostal.includes(code.toString());
+          return city.codePostal.includes(code);
         } else if (name) {
-          return city.nomCommune.includes(name);
+          return city.nomCommune.normalize().includes(name.normalize());
         }
         return true; 
       })
